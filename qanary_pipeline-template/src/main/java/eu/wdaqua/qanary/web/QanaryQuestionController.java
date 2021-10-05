@@ -44,6 +44,8 @@ public class QanaryQuestionController {
 
 	private static final Logger logger = LoggerFactory.getLogger(QanaryQuestionController.class);
 
+	private static final String questionUri = "http://qanary-core:8080";
+
 	// Set this to allow browser requests from other websites
 	@ModelAttribute
 	public void setVaryResponseHeader(HttpServletResponse response) {
@@ -107,7 +109,7 @@ public class QanaryQuestionController {
 			stream.write(questionstring.getBytes(Charset.defaultCharset()));
 		}
 
-		final URI uriOfQuestion = new URI(this.getHost() + "/question/" + filename);
+		final URI uriOfQuestion = new URI( questionUri+ "/question/" + filename);
 		logger.info("uriOfQuestion: {}", uriOfQuestion);
 
 		return new QanaryQuestionCreated(filename, uriOfQuestion);
